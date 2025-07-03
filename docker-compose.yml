@@ -1,0 +1,18 @@
+services:
+  newAppDatabase:
+    image: mongo:8.0
+    container_name: newAppContainerMongoDB
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongoAdmin
+      MONGO_INITDB_ROOT_PASSWORD: mongoAdmin
+    volumes:
+      - ./mongo-keyfile:/etc/mongo-keyfile:ro
+      - mongodb_data:/data/db
+    command: ["mongod", "--auth", "--replSet", "rs0", "--keyFile", "/etc/mongo-keyfile", "--dbpath", "/data/db"]
+
+volumes:
+  mongodb_data:
+    external: true

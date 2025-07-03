@@ -1,0 +1,61 @@
+@layer utilities {
+
+  .text-accent-bohemia {
+    @apply text-[#6BA539] dark:text-[#6BA539];
+  }
+
+  .text-primary {
+    @apply text-[#222222] dark:text-[#DDDDDD];
+  }
+
+  .text-secondary {
+    @apply text-[#777777] dark:text-[#9CA3AF];
+  }
+
+  .text-button-primary {
+    @apply text-[#FFFFFF] dark:text-[#FFFFFF]
+  }
+
+  .bg-button-secondary {
+    @apply bg-[#FFFFFF] dark:bg-[#1F2937]
+  }
+
+  .hover\:bg-button-primary:hover {
+    @apply bg-[#417714] dark:bg-[#417714];
+  }
+
+  .hover\:bg-button-secondary:hover {
+    @apply bg-[#f0f0f0] dark:bg-[#353E4B];
+  }
+  
+  .bg-default {
+    @apply bg-[#F7F7F7] dark:bg-[#101827];
+  }
+
+  .hover\:bg-default:hover {
+    @apply bg-[#F7F7F7] dark:bg-[#101827];
+  }
+
+  .bg-primary {
+    @apply bg-[#FFFFFF] dark:bg-[#1F2937];
+  }
+
+  .text-navigation-item {
+     @apply text-[#374151] dark:text-[#D1D5DB];
+  }
+  .bg-navigation-item {
+    @apply bg-[#F7F7F7] dark:bg-[#374151];
+  }
+  
+  .bg-accent-bohemia {
+    @apply bg-[#6BA539] dark:bg-[#6BA539];
+  }
+
+  .border-page {
+    @apply bg-[#E5E5E5] dark:bg-[#353E4B];
+  }
+
+  .border-accent-bohemia {
+    @apply border-[#6BA539] dark:border-[#6BA539];
+  }
+}
