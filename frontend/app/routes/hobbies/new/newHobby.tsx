@@ -13,10 +13,6 @@ export default function NewHobby({ actionData }: Route.ComponentProps) {
     <div className="space-y-4">
       <BackButton />
       <Header>New Hobby</Header>
-      {/* <HobbyForm
-        data={actionData?.data ?? getEmptyHobbyForm()}
-        errors={actionData?.errors ?? {}}
-      /> */}
       <HobbyForm2
         data={actionData?.data ?? getEmptyHobbyForm()}
         errors={actionData?.errors ? "Eroryyyy" : ""}

@@ -1,10 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
-import { Form } from "react-router";
+import { useSubmit } from "react-router";
 import { FormFieldWrapper } from "~/components/custom/Form/formFieldWrapper";
 import FormSection from "~/components/custom/Form/formSection";
 import { ImageDropzone } from "~/components/custom/Inputs/imageInput";
 import { Button } from "~/components/ui/button";
+import { Form } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import {
   getEmptyHobbyForm,
@@ -34,9 +35,29 @@ export default function HobbyForm({
   const section2Description =
     "Nahraj media pro koníček, který provozují zaměstnanci ve svém volném čase na konkrétních pobočkách.";
 
+  const onSubmit = (formData: IHobbyForm) => {
+    const fd = new FormData();
+
+    for (const [key, value] of Object.entries(formData)) {
+      if (value instanceof File) {
+        fd.append(key, value, value.name); // filename = správné jméno
+      } else if (typeof value === "string") {
+        fd.append(key, value);
+      }
+    }
+
+    console.log(fd.get("img2"));
+
+    console.log(fd.get("name"));
+    console.log(fd.get("description"));
+    console.log(fd.get("locations"));
+    console.log(fd.get("img"));
+    console.log(fd.get("img2"));
+    // submit(fd, { method: "post" });
+  };
   return (
-    <Form method="post">
-      <FormProvider {...form}>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormSection title={section1Title} description={section1Description}>
           <FormFieldWrapper //BIFormField UIFormField
             name="name"
@@ -73,18 +94,32 @@ export default function HobbyForm({
           </FormFieldWrapper>
 
           <FormFieldWrapper
-            name="img"
+            name="img2"
             label="Image URL"
             description="Tady je popisek URL pro obrazek..."
           >
-            {(field) => <ImageDropzone field={field} />}
+            <ImageDropzone />
           </FormFieldWrapper>
         </FormSection>
 
         <Button type="submit">Submit</Button>
-
+        <Button
+          variant="softDestructive"
+          type="button"
+          onClick={() =>
+            form.reset(getEmptyHobbyForm(), {
+              keepErrors: false,
+              keepTouched: false,
+              keepDirty: false,
+              keepIsSubmitted: false,
+              keepSubmitCount: false,
+            })
+          }
+        >
+          Reset
+        </Button>
         {errors ? <p>{errors}</p> : null}
-      </FormProvider>
+      </form>
     </Form>
   );
 }

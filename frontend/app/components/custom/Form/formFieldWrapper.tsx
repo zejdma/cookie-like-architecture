@@ -1,10 +1,9 @@
-// components/form/form-field-wrapper.tsx
 import React from "react";
 import {
   useFormContext,
-  type Control,
   type FieldValues,
   type Path,
+  type UseFormTrigger,
 } from "react-hook-form";
 import {
   FormField,
@@ -19,7 +18,7 @@ type Props<T extends FieldValues> = {
   name: Path<T>;
   label: string;
   description: string;
-  children: React.ReactNode | ((field: any) => React.ReactNode);
+  children: React.ReactElement;
   labelClassName?: string;
 };
 
@@ -29,9 +28,7 @@ export function FormFieldWrapper<T extends FieldValues>({
   description,
   children,
 }: Props<T>) {
-
-  const { control, formState } = useFormContext();
-  
+  const { control, formState, trigger} = useFormContext<T>();
   const hasError = !!formState.errors[name];
 
   return (
@@ -42,10 +39,12 @@ export function FormFieldWrapper<T extends FieldValues>({
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            {typeof children === "function"
-              ? (children as (field: any) => React.ReactNode)(field)
-              : React.isValidElement(children)
-              ? React.cloneElement(children, field)
+            {React.isValidElement(children)
+              ? React.cloneElement(children as React.ReactElement<any>, {
+                  ...field,
+                  fieldName: name,
+                  trigger,
+                })
               : null}
           </FormControl>
           {!hasError && <FormDescription>{description}</FormDescription>}

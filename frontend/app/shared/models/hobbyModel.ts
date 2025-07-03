@@ -1,5 +1,5 @@
 import { z } from "zod";
-
+const fileClass = typeof File !== "undefined" ? File : class {};
 export const HobbyFormSchema = z.object({
   name: z
     .string({ required_error: "Name is required" })
@@ -17,15 +17,24 @@ export const HobbyFormSchema = z.object({
     .string({ required_error: "Image URL is required" })
     .url("Must be a valid image URL")
     .max(2048, "Image URL must be shorter than 2048 characters"),
-  // img: z
-  //   .instanceof(File)
-  //   .refine(Boolean, { message: "Image is required" })
-  //   .refine((file) => file.type.startsWith("image/"), {
-  //     message: "Must be an image",
-  //   })
-  //   .refine((file) => file.size <= 10_000_000, {
-  //     message: "Max size 10MB",
-  //   }),
+  img2: z
+    .custom<File>(
+      (file) => {
+        return file instanceof File;
+      },
+      {
+        message: "Obrázek je povinný",
+      }
+    )
+    .refine((file) => file?.type?.startsWith("image/"), {
+      message: "Soubor musí být obrázek",
+    })
+    .refine((file) => file?.size !== undefined && file.size > 0, {
+      message: "Soubor nesmí být prázdný",
+    })
+    .refine((file) => file?.size !== undefined && file.size <= 1_000_000, {
+      message: "Obrázek musí být menší než 1MB",
+    }),
 });
 
 export type IHobbyForm = z.infer<typeof HobbyFormSchema>;
@@ -36,7 +45,7 @@ export function getEmptyHobbyForm(): IHobbyForm {
     description: "",
     locations: "",
     img: "",
-    // img: new File([], ""),
+    img2: undefined as unknown as File,
   };
 }
 
