@@ -4,9 +4,17 @@ import { useSubmit } from "react-router";
 import { FormFieldWrapper } from "~/components/custom/Form/formFieldWrapper";
 import FormSection from "~/components/custom/Form/formSection";
 import { ImageDropzone } from "~/components/custom/Inputs/imageInput";
+import { ControlledSelect } from "~/components/custom/Inputs/singleSelect";
 import { Button } from "~/components/ui/button";
 import { Form } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
 import {
   getEmptyHobbyForm,
   HobbyFormSchema,
@@ -55,6 +63,30 @@ export default function HobbyForm({
     console.log(fd.get("img2"));
     // submit(fd, { method: "post" });
   };
+
+  const locationsDummy = [
+    {
+      id: "1",
+      name: "Brno, Czech Republic",
+    },
+    {
+      id: "2",
+      name: "Praha, Czech Republic",
+    },
+    {
+      id: "3",
+      name: "Mníšek, Czech Republic",
+    },
+    {
+      id: "4",
+      name: "Pattaya, Thailand",
+    },
+    {
+      id: "5",
+      name: "Amsterdam, Netherlands",
+    },
+  ];
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -78,9 +110,15 @@ export default function HobbyForm({
           <FormFieldWrapper
             name="locations"
             label="Locations"
-            description="Tady je seznam poboček, kde se hobby provádí..."
+            description="Vyber lokace poboček, kde se hobby provádí..."
           >
-            <Input placeholder="Název hobby" />
+            <ControlledSelect
+              options={locationsDummy}
+              valueKey="id"
+              labelKey="name"
+              placeholder="Výběr lokace"
+              // disabled
+            />
           </FormFieldWrapper>
         </FormSection>
 

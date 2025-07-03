@@ -36,10 +36,12 @@ export function ImageDropzone({
   fieldName,
   trigger,
 }: ImageDropzoneProps) {
+
   const {
     formState: { errors },
     clearErrors,
   } = useFormContext();
+  
   const hasError = fieldName ? !!errors[fieldName] : false;
 
   const [preview, setPreview] = useState<string | null>(null);
