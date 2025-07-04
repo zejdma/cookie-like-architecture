@@ -26,7 +26,7 @@ export default function HobbyForm({
   data,
   errors,
 }: {
-  data: IHobbyForm;
+  data: IHobbyForm | IHobby;
   errors: string;
 }) {
   const form = useForm<IHobbyForm>({
@@ -43,25 +43,27 @@ export default function HobbyForm({
   const section2Description =
     "Nahraj media pro koníček, který provozují zaměstnanci ve svém volném čase na konkrétních pobočkách.";
 
+  const submit = useSubmit();
+
   const onSubmit = (formData: IHobbyForm) => {
-    const fd = new FormData();
+    // const fd = new FormData();
 
-    for (const [key, value] of Object.entries(formData)) {
-      if (value instanceof File) {
-        fd.append(key, value, value.name); // filename = správné jméno
-      } else if (typeof value === "string") {
-        fd.append(key, value);
-      }
-    }
+    // for (const [key, value] of Object.entries(formData)) {
+    //   if (value instanceof File) {
+    //     fd.append(key, value, value.name); // filename = správné jméno
+    //   } else if (typeof value === "string") {
+    //     fd.append(key, value);
+    //   }
+    // }
 
-    console.log(fd.get("img2"));
+    // console.log(fd.get("img2"));
 
-    console.log(fd.get("name"));
-    console.log(fd.get("description"));
-    console.log(fd.get("locations"));
-    console.log(fd.get("img"));
-    console.log(fd.get("img2"));
-    // submit(fd, { method: "post" });
+    // console.log(fd.get("name"));
+    // console.log(fd.get("description"));
+    // console.log(fd.get("locations"));
+    // console.log(fd.get("img"));
+    // console.log(fd.get("img2"));
+    submit(formData, { method: "post" });
   };
 
   const locationsDummy = [
@@ -131,13 +133,13 @@ export default function HobbyForm({
             <Input placeholder="URL of img hobby" />
           </FormFieldWrapper>
 
-          <FormFieldWrapper
+          {/* <FormFieldWrapper
             name="img2"
             label="Image URL"
             description="Tady je popisek URL pro obrazek..."
           >
             <ImageDropzone />
-          </FormFieldWrapper>
+          </FormFieldWrapper> */}
         </FormSection>
 
         <Button type="submit">Submit</Button>
@@ -158,6 +160,8 @@ export default function HobbyForm({
         </Button>
         {errors ? <p>{errors}</p> : null}
       </form>
+
+      {"id" in data && <p>✅ Hobby "{data.id}" successfully created!</p>}
     </Form>
   );
 }

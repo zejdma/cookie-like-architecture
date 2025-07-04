@@ -8,7 +8,9 @@ import BackButton from "~/components/custom/BackButton";
 
 export const action = newHobbyAction;
 
+
 export default function NewHobby({ actionData }: Route.ComponentProps) {
+  
   return (
     <div className="space-y-4">
       <BackButton />

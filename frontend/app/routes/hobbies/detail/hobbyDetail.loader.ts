@@ -1,6 +1,8 @@
-import { useHobbyStorage } from "../../../shared/adapters/hobbyAdapter";
+import { useCases } from "~/shared/domain";
+import { hobbyRepository } from "../../../shared/repositories/hobbyRepository";
 import type { Route } from "./+types/hobbyDetail";
 
 export async function loadHobbyById({params}: Route.ClientActionArgs) {
-  return useHobbyStorage().getById(params.hobbyId);
+  // return hobbyRepository().getById(params.hobbyId);
+  return await useCases.getOneHobby.execute(params.hobbyId);
 }

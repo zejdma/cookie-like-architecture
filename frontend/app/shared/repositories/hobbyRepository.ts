@@ -1,7 +1,7 @@
 import type { IHobby, IHobbyForm } from "../models/hobbyModel";
-import type { HobbyStorageService } from "./ports";
+import type { HobbyRepositoryInterface } from "./repositoryInterfaces";
 
-export function useHobbyStorage(): HobbyStorageService {
+export function hobbyRepository(): HobbyRepositoryInterface {
   return {
     getAll: async (page, limit) => {
       const res = await fetch(

@@ -1,6 +1,6 @@
 import type { IHobby, IHobbyForm } from "../models/hobbyModel";
 
-export interface HobbyStorageService {
+export interface HobbyRepositoryInterface {
   getAll(
     page: number,
     limit: number
