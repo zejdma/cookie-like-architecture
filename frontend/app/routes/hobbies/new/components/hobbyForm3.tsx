@@ -162,6 +162,21 @@ export default function HobbyForm3({
           </FormFieldWrapper>
 
           <FormFieldWrapper
+            name="environment"
+            label="Prostředí"
+            description="Vyber, kde se hobby provozuje..."
+          >
+            <ControlledSelect
+              options={environmentOptions}
+              placeholder="Vyber prostředí"
+              valueKey="id"
+              labelKey="name"
+              searchable
+              // disabled
+            />
+          </FormFieldWrapper>
+
+          <FormFieldWrapper
             name="people"
             label="People"
             description="Vyber lidi zapojené do hobby..."
@@ -173,6 +188,37 @@ export default function HobbyForm3({
               placeholder="Vyber osoby"
               // disabled
               searchable
+              badges
+            />
+          </FormFieldWrapper>
+
+          <FormFieldWrapper
+            name="tags"
+            label="Tagy"
+            description="Vyber tagy popisující hobby..."
+          >
+            <ControlledMultiSelect
+              options={tagOptions}
+              placeholder="Vyber tagy"
+              valueKey="id"
+              labelKey="name"
+              // badges
+              // disabled
+            />
+          </FormFieldWrapper>
+
+          <FormFieldWrapper
+            name="seasons"
+            label="Roční období"
+            description="Vyber období, kdy se hobby provádí..."
+          >
+            <ControlledMultiSelect
+              options={seasonOptions}
+              placeholder="Vyber období"
+              valueKey="id"
+              labelKey="name"
+              badges
+              // disabled
             />
           </FormFieldWrapper>
         </FormSection>
@@ -192,47 +238,6 @@ export default function HobbyForm3({
             description="Tady je popisek URL pro obrazek..."
           >
             <ImageDropzone />
-          </FormFieldWrapper>
-        </FormSection>
-        <FormSection title={section2Title} description={section2Description}>
-          <FormFieldWrapper
-            name="environment"
-            label="Prostředí"
-            description="Vyber, kde se hobby provozuje..."
-          >
-            <ControlledSelect
-              options={environmentOptions}
-              placeholder="Vyber prostředí"
-              valueKey="id"
-              labelKey="name"
-              searchable
-            />
-          </FormFieldWrapper>
-
-          <FormFieldWrapper
-            name="tags"
-            label="Tagy"
-            description="Vyber tagy popisující hobby..."
-          >
-            <ControlledMultiSelect
-              options={tagOptions}
-              placeholder="Vyber tagy"
-              valueKey="id"
-              labelKey="name"
-            />
-          </FormFieldWrapper>
-
-          <FormFieldWrapper
-            name="seasons"
-            label="Roční období"
-            description="Vyber období, kdy se hobby provádí..."
-          >
-            <ControlledMultiSelect
-              options={seasonOptions}
-              placeholder="Vyber období"
-              valueKey="id"
-              labelKey="name"
-            />
           </FormFieldWrapper>
         </FormSection>
         <Button type="submit" disabled={isLoading}>
