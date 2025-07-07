@@ -2,7 +2,6 @@
 import { getEmptyHobbyForm } from "~/shared/models/hobbyModel";
 import type { IHobby, IHobbyForm } from "~/shared/models/hobbyModel";
 import { useActionData, useNavigation } from "react-router";
-import type { Route } from "./+types/newHobby";
 import type { newHobbyAction } from "./newHobby.action";
 
 
@@ -10,17 +9,12 @@ export function useNewHobbyController() {
   const actionData = useActionData<typeof newHobbyAction>();
   const navigation = useNavigation();
 
-  const isLoading = navigation.state === "submitting";
-
-  const formData: IHobbyForm =
-    actionData?.data ?? getEmptyHobbyForm();
-
-  const errorMsg = typeof actionData?.errors === "string" ? actionData.errors : "";
-
-  return {
-    isLoading,
-    formData,
-    errorMsg,
+  const controller = {
+    isLoading: navigation.state === "submitting",
+    formData: (actionData?.data ?? getEmptyHobbyForm()) as IHobbyForm,
+    errorMsg: typeof actionData?.errors === "string" ? actionData.errors : "",
     submitted: Boolean(actionData?.data?.id),
   };
+
+  return controller;
 }

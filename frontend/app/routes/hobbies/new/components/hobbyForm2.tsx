@@ -1,20 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useSubmit } from "react-router";
 import { FormFieldWrapper } from "~/components/custom/Form/formFieldWrapper";
 import FormSection from "~/components/custom/Form/formSection";
-import { ImageDropzone } from "~/components/custom/Inputs/imageInput";
 import { ControlledSelect } from "~/components/custom/Inputs/singleSelect";
 import { Button } from "~/components/ui/button";
 import { Form } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "~/components/ui/select";
 import {
   getEmptyHobbyForm,
   HobbyFormSchema,

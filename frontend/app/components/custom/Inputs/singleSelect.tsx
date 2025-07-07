@@ -25,7 +25,7 @@ export const ControlledSelect = ({
   onChange,
   fieldName,
   trigger,
-  placeholder = "Vyber...",
+  placeholder = "Vyber jeden...",
   options,
   valueKey = "value",
   labelKey = "label",
@@ -37,12 +37,10 @@ export const ControlledSelect = ({
   };
 
   const {
-    formState: { errors },
-    clearErrors,
+    formState: { errors, isSubmitted },
   } = useFormContext();
 
-  const hasError = fieldName ? !!errors[fieldName] : false;
-
+  const hasError = fieldName ? !!errors[fieldName] && isSubmitted : false;
   return (
     <Select value={value} onValueChange={handleChange} disabled={disabled}>
       <SelectTrigger
