@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useSubmit } from "react-router";
 import { FormFieldWrapper } from "~/components/custom/Form/formFieldWrapper";
 import FormSection from "~/components/custom/Form/formSection";
-import { ControlledSelect } from "~/components/custom/Inputs/singleSelect";
+import { ControlledSelectOld } from "~/components/custom/Inputs/singleSelectOld";
 import { Button } from "~/components/ui/button";
 import { Form } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
@@ -106,7 +106,7 @@ export default function HobbyForm({
             label="Locations"
             description="Vyber lokace poboček, kde se hobby provádí..."
           >
-            <ControlledSelect
+            <ControlledSelectOld
               options={locationsDummy}
               valueKey="id"
               labelKey="name"

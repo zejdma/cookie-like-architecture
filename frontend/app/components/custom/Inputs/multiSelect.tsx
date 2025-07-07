@@ -5,6 +5,7 @@ import { Button } from "~/components/ui/button";
 import {
   Command,
   CommandGroup,
+  CommandInput,
   CommandItem,
   CommandList,
 } from "~/components/ui/command";
@@ -23,9 +24,10 @@ type ControlledMultiSelectProps = {
   trigger?: (name: string) => Promise<boolean>;
   placeholder?: string;
   options: any[];
-  valueKey?: string; // default: "value"
-  labelKey?: string; // default: "label"
+  valueKey?: string;
+  labelKey?: string;
   disabled?: boolean;
+  searchable?: boolean;
 };
 
 export const ControlledMultiSelect = ({
@@ -38,8 +40,15 @@ export const ControlledMultiSelect = ({
   valueKey = "value",
   labelKey = "label",
   disabled,
+  searchable,
 }: ControlledMultiSelectProps) => {
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const effectiveOptions = searchable
+    ? options.filter((opt) =>
+        opt[labelKey].toLowerCase().includes(search.toLowerCase())
+      )
+    : options;
 
   const {
     formState: { errors, isSubmitted },
@@ -97,7 +106,7 @@ export const ControlledMultiSelect = ({
                   : (() => {
                       const text = selected.map((s) => s[labelKey]).join(", ");
                       return text.length > 40
-                        ? `${value.length} items selected`
+                        ? `${value.length} selected`
                         : text;
                     })()}
               </div>
@@ -105,12 +114,19 @@ export const ControlledMultiSelect = ({
             </Button>
           </PopoverTrigger>
 
-          {/* 💡 Šířka synchronizovaná podle triggeru */}
           <PopoverContent style={{ width }} className="p-0">
-            <Command>
+            <Command shouldFilter={false}>
+              {searchable && (
+                <CommandInput
+                  placeholder="Hledej..."
+                  value={search}
+                  onValueChange={setSearch}
+                />
+              )}
+
               <CommandList>
                 <CommandGroup>
-                  {options.map((option) => {
+                  {effectiveOptions.map((option) => {
                     const isSelected = value.includes(option[valueKey]);
                     return (
                       <CommandItem

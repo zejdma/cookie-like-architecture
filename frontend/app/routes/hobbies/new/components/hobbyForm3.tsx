@@ -156,6 +156,7 @@ export default function HobbyForm3({
               valueKey="id"
               labelKey="name"
               placeholder="Výběr lokace"
+              searchable
               // disabled
             />
           </FormFieldWrapper>
@@ -171,6 +172,7 @@ export default function HobbyForm3({
               labelKey="name"
               placeholder="Vyber osoby"
               // disabled
+              searchable
             />
           </FormFieldWrapper>
         </FormSection>
@@ -203,6 +205,7 @@ export default function HobbyForm3({
               placeholder="Vyber prostředí"
               valueKey="id"
               labelKey="name"
+              searchable
             />
           </FormFieldWrapper>
 

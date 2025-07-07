@@ -34,9 +34,11 @@ export const HobbyFormSchema = z.object({
 
   people: z.array(z.string()).min(1, "Vyber alespoň jednu osobu"),
 
-  environment: z.enum(["indoor", "outdoor"], {
+  environment: z
+  .enum(["indoor", "outdoor"], {
     required_error: "Zadej typ prostředí",
-  }),
+  })
+  .optional(),
 
   tags: z.array(z.string()).min(1, "Vyber alespoň jeden tag"),
 
@@ -53,7 +55,7 @@ export function getEmptyHobbyForm(): IHobbyForm {
     img: "",
     img2: undefined as unknown as File,
     people: [],
-    environment: "indoor",
+    environment: undefined as unknown as "indoor" | "outdoor",
     tags: [],
     seasons: [],
   };
