@@ -107,6 +107,9 @@ importers:
       '@tiptap/extension-code-block-lowlight':
         specifier: ^2.25.0
         version: 2.25.0(@tiptap/core@2.25.0(@tiptap/pm@2.25.0))(@tiptap/extension-code-block@2.25.0(@tiptap/core@2.25.0(@tiptap/pm@2.25.0))(@tiptap/pm@2.25.0))(@tiptap/pm@2.25.0)(highlight.js@11.11.1)(lowlight@3.3.0)
+      '@tiptap/extension-history':
+        specifier: ^2.25.0
+        version: 2.25.0(@tiptap/core@2.25.0(@tiptap/pm@2.25.0))(@tiptap/pm@2.25.0)
       '@tiptap/extension-horizontal-rule':
         specifier: ^2.25.0
         version: 2.25.0(@tiptap/core@2.25.0(@tiptap/pm@2.25.0))(@tiptap/pm@2.25.0)

@@ -13,6 +13,7 @@ import TextAlign from "@tiptap/extension-text-align";
 import BulletList from "@tiptap/extension-bullet-list";
 import OrderedList from "@tiptap/extension-ordered-list";
 import ListItem from "@tiptap/extension-list-item";
+import History from "@tiptap/extension-history"; 
 
 export type TExtension = Extension | Mark | Node;
 
@@ -36,6 +37,8 @@ export class ExtensionBuilder {
     "listItem",
     "codeBlock",
     "horizontalRule",
+    "history",
+    // ADD MORE
   ];
   public addExtension(extension: TExtension): this {
     this.extensions.push(extension);
@@ -65,6 +68,11 @@ export class ExtensionBuilder {
     this.addExtension(kit);
     return this;
   }
+
+  public addHistory() {
+  this.addExtension(History);
+  return this;
+}
 
   public addLists() {
     this.addExtension(BulletList);

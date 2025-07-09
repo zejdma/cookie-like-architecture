@@ -36,7 +36,9 @@ export const RichTextInput = ({
     .addCodeBlock()
     .addHorizontalRule()
     .addBlockquote()
+    .addHistory()
     .addTextAlign();
+    
 
   const editor = useEditor({
     editable: !disabled,

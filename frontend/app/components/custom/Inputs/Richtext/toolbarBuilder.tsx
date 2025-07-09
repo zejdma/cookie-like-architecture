@@ -17,6 +17,8 @@ import {
   Minus,
   QuoteIcon,
   UnderlineIcon,
+  Undo2,
+  Redo2,
 } from "lucide-react";
 import { ExtensionBuilder } from "./extensionBuilder";
 
@@ -33,7 +35,11 @@ export function getToolbarItems(
           key={`heading-${level}`}
           pressed={editor.isActive("heading", { level })}
           onPressedChange={() =>
-            editor.chain().focus().toggleHeading({ level: level as 1 | 2 | 3 }).run()
+            editor
+              .chain()
+              .focus()
+              .toggleHeading({ level: level as 1 | 2 | 3 })
+              .run()
           }
           aria-label={`Heading ${level}`}
           size="sm"
@@ -68,9 +74,7 @@ export function getToolbarItems(
     buttons.push(
       <Toggle
         key="orderedList"
-        onPressedChange={() =>
-          editor.chain().focus().toggleOrderedList().run()
-        }
+        onPressedChange={() => editor.chain().focus().toggleOrderedList().run()}
         pressed={editor.isActive("orderedList")}
         aria-label="Ordered List"
         size="sm"
@@ -113,9 +117,7 @@ export function getToolbarItems(
       <Toggle
         key="underline"
         pressed={editor.isActive("underline")}
-        onPressedChange={() =>
-          editor.chain().focus().toggleUnderline().run()
-        }
+        onPressedChange={() => editor.chain().focus().toggleUnderline().run()}
         aria-label="Underline"
         size="sm"
       >
@@ -144,9 +146,7 @@ export function getToolbarItems(
     buttons.push(
       <Toggle
         key="blockquote"
-        onPressedChange={() =>
-          editor.chain().focus().toggleBlockquote().run()
-        }
+        onPressedChange={() => editor.chain().focus().toggleBlockquote().run()}
         pressed={editor.isActive("blockquote")}
         aria-label="Blockquote"
         size="sm"
@@ -198,14 +198,35 @@ export function getToolbarItems(
     buttons.push(
       <Toggle
         key="hr"
-        onPressedChange={() =>
-          editor.chain().focus().setHorizontalRule().run()
-        }
+        onPressedChange={() => editor.chain().focus().setHorizontalRule().run()}
         aria-label="Horizontal rule"
         size="sm"
       >
         <Minus size={16} />
       </Toggle>
+    );
+  }
+
+  if (builder.hasExtension("history")) {
+    buttons.push(
+      <div key="history-group" className="ml-auto flex gap-2">
+        <Toggle
+          onPressedChange={() => editor.chain().focus().undo().run()}
+          aria-label="Undo"
+          size="sm"
+          disabled={!editor.can().undo()}
+        >
+          <Undo2 size={16} />
+        </Toggle>
+        <Toggle
+          onPressedChange={() => editor.chain().focus().redo().run()}
+          aria-label="Redo"
+          size="sm"
+          disabled={!editor.can().redo()}
+        >
+          <Redo2 size={16} />
+        </Toggle>
+      </div>
     );
   }
 
