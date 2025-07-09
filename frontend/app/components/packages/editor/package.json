@@ -1,0 +1,58 @@
+{
+  "name": "@bistudio-feedback/editor",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "sideEffects": false,
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "cross-env NODE_ENV=production tsup",
+    "clean": "rm -rf dist",
+    "dev": "tsup --watch",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@bistudio-feedback/tailwind-config": "workspace:*",
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
+    "autoprefixer": "^10.4.15",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.52.0",
+    "postcss": "^8.4.31",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.3.5",
+    "tsconfig": "workspace:*",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@bistudio-feedback/ui": "workspace:*",
+    "@feedback/eslint-config": "workspace:*",
+    "@tiptap/core": "^2.1.10",
+    "@tiptap/extension-floating-menu": "^2.2.4",
+    "@tiptap/extension-horizontal-rule": "^2.1.10",
+    "@tiptap/extension-image": "^2.1.10",
+    "@tiptap/extension-link": "^2.1.10",
+    "@tiptap/extension-mention": "^2.1.12",
+    "@tiptap/extension-placeholder": "^2.1.10",
+    "@tiptap/extension-underline": "^2.1.10",
+    "@tiptap/html": "^2.2.4",
+    "@tiptap/pm": "^2.1.10",
+    "@tiptap/react": "^2.1.10",
+    "@tiptap/starter-kit": "^2.1.10",
+    "@tiptap/suggestion": "^2.1.11",
+    "@types/node": "^20.5.9",
+    "lucide-react": "^0.290.0",
+    "tippy.js": "^6.3.7",
+    "use-debounce": "^9.0.4",
+    "usehooks-ts": "^2.9.1"
+  }
+}

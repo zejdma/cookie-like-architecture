@@ -1,0 +1,142 @@
+@layer base {
+  :root {
+    --background-primary: #ffffff;
+    --background-primary-transparent: #ffffffcc;
+    --background-default: #f9fafb;
+
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --text-disabled: #d1d5db;
+
+    --accent-primary: #649b31;
+    --accent-background: #649b3126;
+
+    --menu-text: #374151;
+    --menu-background-selected: #f3f4f6;
+
+    --button-text-primary: #ffffff;
+    --button-text-secondary: #374151;
+    --button-background-primary: #649b31;
+    --button-background-secondary: #ffffff;
+    --button-border-secondary: #d1d5db;
+
+    --border-page: #f2f2f2;
+    --border-textfield: #d1d5db;
+
+    /*Old styles*/
+
+    /* sidebar sm */
+    --foreground: #1c1b17;
+
+    --muted: #f5f7fa;
+    --muted-foreground: #71717a;
+
+    /* dropdowns background */
+    --popover: #ffffff;
+    --popover-foreground: #4f4d47;
+
+    /* dropdowns border */
+    --border: #d1d5db;
+    --input: #d1d5db;
+
+    --card: #ffffff;
+    --card-foreground: #1c1b17;
+
+    /* main button */
+    --primary: #649b31;
+    --primary-foreground: #ffffff;
+    --hover-button: #568729;
+
+    --secondary: #f5f7fa;
+    --secondary-foreground: #1e293b;
+
+    /* dropdowns single row */
+    --dropdowns-accent: #f4f6f9;
+    --dropdowns-accent-foreground: #1e293b;
+
+    /* delete button */
+    --destructive: #d93737;
+    --destructive-foreground: #d93737;
+
+    /* sidebar cross ring */
+    --ring: #d1d5db;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background-primary: #212937;
+    --background-primary-transparent: #212937e5;
+    --background-default: #111827;
+
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --text-menu: #d1d5db;
+    --text-disabled: #ffffff;
+
+    --accent-primary: #649b31;
+    --accent-background: #47831726;
+
+    --menu-text: #d1d5db;
+    --menu-background-selected: #212937;
+
+    --button-text-primary: #ffffff;
+    --button-text-secondary: #f9fafb;
+    --button-background-primary: #649b31;
+    --button-background-secondary: #29303d;
+    --button-border-secondary: #00000000;
+
+    --border-page: #1a1f2b;
+    --border-textfield: #384252;
+
+    /*Old styles*/
+
+    --foreground: #d9e4f1;
+
+    --muted: #2d3748;
+    --muted-foreground: #a3a8c3;
+
+    --dropdowns-accent: #3b434d;
+    --dropdowns-accent-foreground: #d9e4f1;
+
+    --popover: #2d3748;
+    --popover-foreground: #d9e4f1;
+
+    --border: #374151;
+    --input: #374151;
+
+    --card: #2d3748;
+    --card-foreground: #d9e4f1;
+
+    --primary: #568729;
+    --primary-foreground: #ffffff;
+    --hover-button: #649b31;
+
+    --secondary: #2b3343;
+    --secondary-foreground: #d9e4f1;
+
+    --destructive: #d93737;
+    --destructive-foreground: #d93737;
+
+    --ring: #649b31;
+
+    --radius: 0.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+  }
+}

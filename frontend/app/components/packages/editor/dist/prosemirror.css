@@ -1,0 +1,97 @@
+@keyframes spinning {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ProseMirror .is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--muted-foreground);
+  pointer-events: none;
+  height: 0;
+}
+.ProseMirror .is-empty::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--muted-foreground);
+  pointer-events: none;
+  height: 0;
+}
+
+/* Custom image styles */
+
+.ProseMirror img {
+  transition: filter 0.1s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+  }
+
+  &.ProseMirror-selectednode {
+    outline: 3px solid #5abbf7;
+    filter: brightness(90%);
+  }
+}
+
+.img-placeholder {
+  position: relative;
+
+  &:before {
+    content: "";
+    z-index: 10;
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 4px solid var(--background-primary);
+    border-top-color: var(--foreground);
+    animation: spinning 0.6s linear infinite;
+  }
+}
+
+/* Custom video styles */
+
+.ProseMirror video {
+  transition: filter 0.1s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+  }
+
+  &.ProseMirror-selectednode {
+    outline: 3px solid #5abbf7;
+    filter: brightness(90%);
+  }
+}
+
+.video-placeholder {
+  position: relative;
+  max-width: 42rem;
+
+  &:before {
+    content: "";
+    z-index: 10;
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 4px solid var(--background);
+    border-top-color: var(--foreground);
+    animation: spinning 0.6s linear infinite;
+  }
+}
+
+/* Overwrite tippy-box original max-width */
+
+.tippy-box {
+  max-width: 400px !important;
+}

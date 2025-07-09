@@ -43,6 +43,12 @@ export const HobbyFormSchema = z.object({
   tags: z.array(z.string()).min(1, "Vyber alespoň jeden tag"),
 
   seasons: z.array(z.string()).min(1, "Vyber alespoň jedno roční období"),
+
+  isPublic: z.boolean(),
+
+  publicDescription: z.string().optional(),
+  
+  richDescription: z.string().min(1, "Rich text nesmí být prázdný"),
 });
 
 export type IHobbyForm = z.infer<typeof HobbyFormSchema>;
@@ -58,6 +64,9 @@ export function getEmptyHobbyForm(): IHobbyForm {
     environment: undefined as unknown as "indoor" | "outdoor",
     tags: [],
     seasons: [],
+    isPublic: false,
+    publicDescription: "",
+    richDescription: "<h1>Nadpis 1</h1><ul><li>item</li></ul>"
   };
 }
 

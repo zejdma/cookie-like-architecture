@@ -1,0 +1,26 @@
+{
+  "name": "@bistudio-feedback/core-constants",
+  "version": "1.0.0",
+  "description": "Work with caution, the changes have impact on the feedback tracker api.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "pnpm clean && tsup src/index.ts --format esm,cjs --dts",
+    "clean": "rm -rf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "tsconfig": "workspace:*",
+    "tsup": "^7.2.0"
+  },
+  "dependencies": {
+    "tsconfig": "workspace:*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

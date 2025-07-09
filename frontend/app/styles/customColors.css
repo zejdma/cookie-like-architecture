@@ -1,61 +1,175 @@
+:root {
+  /* Bohemia Accent */
+  --color-green-bohemia: #6BA539;
+  --color-green-bohemia-darker: #417714;
+
+  /* Neutrals */
+  --color-white: #FFFFFF;
+  --color-gray-f7: #F7F7F7;
+  --color-gray-f0: #f0f0f0;
+  --color-gray-e5: #E5E5E5;
+  --color-gray-dd: #DDDDDD;
+  --color-gray-b1: #D1D5DB;
+  --color-gray-9c: #9CA3AF;
+  --color-gray-77: #777777;
+  --color-gray-37: #374151;
+  --color-gray-22: #222222;
+  --color-gray-1f: #1F2937;
+  --color-gray-10: #101827;
+ 
+}
+
 @layer utilities {
 
+  /* === TEXT === */
+
   .text-accent-bohemia {
-    @apply text-[#6BA539] dark:text-[#6BA539];
+    color: var(--color-green-bohemia);
+  }
+  .dark .text-accent-bohemia {
+    color: var(--color-green-bohemia);
   }
 
   .text-primary {
-    @apply text-[#222222] dark:text-[#DDDDDD];
+    color: var(--color-gray-22);
+  }
+  .dark .text-primary {
+    color: var(--color-gray-dd);
   }
 
   .text-secondary {
-    @apply text-[#777777] dark:text-[#9CA3AF];
+    color: var(--color-gray-77);
+  }
+  .dark .text-secondary {
+    color: var(--color-gray-9c);
   }
 
   .text-button-primary {
-    @apply text-[#FFFFFF] dark:text-[#FFFFFF]
+    color: var(--color-white);
   }
-
-  .bg-button-secondary {
-    @apply bg-[#FFFFFF] dark:bg-[#1F2937]
-  }
-
-  .hover\:bg-button-primary:hover {
-    @apply bg-[#417714] dark:bg-[#417714];
-  }
-
-  .hover\:bg-button-secondary:hover {
-    @apply bg-[#f0f0f0] dark:bg-[#353E4B];
-  }
-  
-  .bg-default {
-    @apply bg-[#F7F7F7] dark:bg-[#101827];
-  }
-
-  .hover\:bg-default:hover {
-    @apply bg-[#F7F7F7] dark:bg-[#101827];
-  }
-
-  .bg-primary {
-    @apply bg-[#FFFFFF] dark:bg-[#1F2937];
+  .dark .text-button-primary {
+    color: var(--color-white);
   }
 
   .text-navigation-item {
-     @apply text-[#374151] dark:text-[#D1D5DB];
+    color: var(--color-gray-37);
   }
-  .bg-navigation-item {
-    @apply bg-[#F7F7F7] dark:bg-[#374151];
-  }
-  
-  .bg-accent-bohemia {
-    @apply bg-[#6BA539] dark:bg-[#6BA539];
+  .dark .text-navigation-item {
+    color: var(--color-gray-b1);
   }
 
+  /* === BACKGROUNDS === */
+
+  .bg-button-secondary {
+    background-color: var(--color-white);
+  }
+  .dark .bg-button-secondary {
+    background-color: var(--color-gray-1f);
+  }
+
+  .hover\:bg-button-primary:hover {
+    background-color: var(--color-green-bohemia-darker);
+  }
+  .dark .hover\:bg-button-primary:hover {
+    background-color: var(--color-green-bohemia-darker);
+  }
+
+  .hover\:bg-button-secondary:hover {
+    background-color: var(--color-gray-f0);
+  }
+  .dark .hover\:bg-button-secondary:hover {
+    background-color: var(--color-gray-10);
+  }
+
+  .bg-default {
+    background-color: var(--color-gray-f7);
+  }
+  .dark .bg-default {
+    background-color: var(--color-gray-10);
+  }
+
+  .hover\:bg-default:hover {
+    background-color: var(--color-gray-f7);
+  }
+  .dark .hover\:bg-default:hover {
+    background-color: var(--color-gray-10);
+  }
+
+  .bg-primary {
+    background-color: var(--color-white);
+  }
+  .dark .bg-primary {
+    background-color: var(--color-gray-1f);
+  }
+
+  .bg-navigation-item {
+    background-color: var(--color-gray-f7);
+  }
+  .dark .bg-navigation-item {
+    background-color: var(--color-gray-37);
+  }
+
+  .bg-accent-bohemia {
+    background-color: var(--color-green-bohemia);
+  }
+  .dark .bg-accent-bohemia {
+    background-color: var(--color-green-bohemia);
+  }
+
+  /* === BORDERS === */
+
   .border-page {
-    @apply bg-[#E5E5E5] dark:bg-[#353E4B];
+    border-color: var(--color-gray-e5);
+  }
+  .dark .border-page {
+    border-color: var(--color-gray-10);
   }
 
   .border-accent-bohemia {
-    @apply border-[#6BA539] dark:border-[#6BA539];
+    border-color: var(--color-green-bohemia);
+  }
+  .dark .border-accent-bohemia {
+    border-color: var(--color-green-bohemia);
+  }
+
+  /* === TIPTAP RICHTEXT EDITOR === */
+  .prose-editor h1 {
+    @apply text-2xl font-bold mb-2;
+  }
+
+  .prose-editor h2 {
+    @apply text-xl font-semibold mb-2;
+  }
+
+  .prose-editor h3 {
+    @apply text-lg font-semibold mb-2;
+  }
+
+  .prose-editor ul {
+    @apply list-disc list-outside ml-6 my-2;
+  }
+
+  .prose-editor ol {
+    @apply list-decimal list-outside ml-6 my-2;
+  }
+
+  .prose-editor li {
+    @apply ml-2;
+  }
+
+  .prose-editor blockquote {
+    @apply border-l-4 pl-4 italic text-muted-foreground my-2;
+  }
+
+  .prose-editor p {
+    @apply mb-2;
+  }
+
+  .prose-editor img {
+    @apply max-w-full rounded border;
+  }
+
+  .prose-editor hr {
+    @apply border-t my-4;
   }
 }

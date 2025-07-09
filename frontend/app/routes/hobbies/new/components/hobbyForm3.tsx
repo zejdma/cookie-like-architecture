@@ -1,14 +1,17 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useSubmit } from "react-router";
 import { FormFieldWrapper } from "~/components/custom/Form/formFieldWrapper";
 import FormSection from "~/components/custom/Form/formSection";
 import { ImageDropzone } from "~/components/custom/Inputs/imageInput";
 import { ControlledMultiSelect } from "~/components/custom/Inputs/multiSelect";
+import { RichTextInput } from "~/components/custom/Inputs/Richtext/richTextInput";
 import { ControlledSelect } from "~/components/custom/Inputs/singleSelect";
+import { ControlledSwitch } from "~/components/custom/Inputs/switchInput";
 import { Button } from "~/components/ui/button";
 import { Form } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
+import { Switch } from "~/components/ui/switch";
 import {
   getEmptyHobbyForm,
   HobbyFormSchema,
@@ -126,6 +129,8 @@ export default function HobbyForm3({
     { id: "winter", name: "Zima" },
   ];
 
+  const isPublic = useWatch({ control: form.control, name: "isPublic" });
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -156,7 +161,7 @@ export default function HobbyForm3({
               valueKey="id"
               labelKey="name"
               placeholder="Výběr lokace"
-              searchable
+              // searchable
               // disabled
             />
           </FormFieldWrapper>
@@ -187,7 +192,7 @@ export default function HobbyForm3({
               labelKey="name"
               placeholder="Vyber osoby"
               // disabled
-              searchable
+              // searchable
               badges
             />
           </FormFieldWrapper>
@@ -204,6 +209,7 @@ export default function HobbyForm3({
               labelKey="name"
               // badges
               // disabled
+              searchable
             />
           </FormFieldWrapper>
 
@@ -218,7 +224,8 @@ export default function HobbyForm3({
               valueKey="id"
               labelKey="name"
               badges
-              // disabled
+              searchable
+              disabled
             />
           </FormFieldWrapper>
         </FormSection>
@@ -239,11 +246,35 @@ export default function HobbyForm3({
           >
             <ImageDropzone />
           </FormFieldWrapper>
+
         </FormSection>
+        
+        <FormSection title={section2Title} description={section2Description}>
+          <FormFieldWrapper name="isPublic" label="Veřejné hobby">
+            <ControlledSwitch description="Zapni, pokud má být tento koníček veřejně viditelný" />
+          </FormFieldWrapper>
+
+          <FormFieldWrapper
+            name="publicDescription"
+            label="Veřejný popis"
+            description="Tento popis se zobrazí veřejně"
+            disabled={!isPublic}
+          >
+            <Input placeholder="Popis viditelný veřejně" disabled={!isPublic} />
+          </FormFieldWrapper>
+
+          <FormFieldWrapper
+            name="richDescription"
+            label="Popis"
+            description="Popiš hobby pomocí formátovaného textu"
+          >
+            <RichTextInput placeholder="Zadej text..." />
+          </FormFieldWrapper>
+        </FormSection>
+        
         <Button type="submit" disabled={isLoading}>
           {isLoading ? "Submitting..." : "Submit"}
         </Button>
-
         {/* Reset, errors, success */}
         {errors && <p className="text-red-500">{errors}</p>}
         {submitted && <p className="text-green-500">✅ Hobby created!</p>}
