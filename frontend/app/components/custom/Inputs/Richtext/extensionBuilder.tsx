@@ -47,6 +47,7 @@ export class ExtensionBuilder {
 
   public addStarterKit(options: StarterKitOptions = {}) {
     const kit = StarterKit.configure({
+      history: false,
       heading: {
         levels: [1, 2, 3],
         HTMLAttributes: {
